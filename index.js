@@ -1,3 +1,12 @@
+/* Simple ASCII Calendar similar to Linux cal command
+ *
+ * Copyright (C) Jakub T. Jankiewicz <https://jcubic.pl>
+ * Released under MIT license
+ */
+
+// base code from Codpen
+// https://codepen.io/jcubic/pen/dyoJQQv?editors=1010
+
 var calc = (function() {
     var SEPARATOR = '  ';
     var LANG = window.navigator.language;
