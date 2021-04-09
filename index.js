@@ -9,8 +9,8 @@
 
 var cal = (function() {
     var SEPARATOR = '  ';
-    var LANG = window.navigator.language;
-    
+    var LANG = typeof window !== 'undefined' ? window.navigator.language : undefined;
+
     // ----------------------------------------------------------------------------------
     function get_day_count(year, month) {
         if (month === 1) {
@@ -31,7 +31,7 @@ var cal = (function() {
     function repeat(str, n) {
         return new Array(n + 1).join(str);
     }
-    
+
     // ----------------------------------------------------------------------------------
     function center(text, length) {
         var rep = repeat.bind(null, ' ');
@@ -42,7 +42,7 @@ var cal = (function() {
             return rep(Math.floor(n)) + text + rep(Math.ceil(n));
         }
     }
-    
+
     // ----------------------------------------------------------------------------------
     function week_days() {
         var result = [];
@@ -52,7 +52,7 @@ var cal = (function() {
         }
         return result.join(SEPARATOR);
     }
-    
+
     // ----------------------------------------------------------------------------------
     function days(year, month) {
         var date = new Date(year + '/' + (month+1) + '/' + 1);
@@ -78,19 +78,18 @@ var cal = (function() {
         }
         return result.join('\n');
     }
-    
+
     // ----------------------------------------------------------------------------------
     return function generate(year, month) {
         var result = [];
         var week = week_days();
         var date = new Date(year + '/' + (month+1) + '/' + 1);
-        var month_label = date.toLocaleString(LANG, {month: 'long'});
+        var month_label = date.toLocaleString(LANG, { month: 'long' });
         result.push(center(month_label + ' ' + year, week.length));
         result.push(week);
         result.push(days(year, month));
         return result.join('\n');
-    }
+    };
 })();
-
 
 module.exports = cal;
