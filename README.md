@@ -12,8 +12,26 @@ npm install ascii-calendar
 
 ```javascript
 const cal = require('ascii-calendar');
-console.log(cal(2021, 3));
+console.log(cal(2021, 4));
 ```
+Output:
+
+```
+         May 2021         
+Su  Mo  Tu  We  Th  Fr  Sa
+                         1
+ 2   3   4   5   6   7   8
+ 9  10  11  12  13  14  15
+16  17  18  19  20  21  22
+23  24  25  26  27  28  29
+30  31
+```
+
+Rules:
+
+* It automatically detect locale and render proper translation.
+* First day of the week also depend on locale.
+* Months are indexed from 0.
 
 ## License
 
