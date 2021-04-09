@@ -7,7 +7,7 @@
 // base code from Codpen
 // https://codepen.io/jcubic/pen/dyoJQQv?editors=1010
 
-var calc = (function() {
+var cal = (function() {
     var SEPARATOR = '  ';
     var LANG = window.navigator.language;
     
@@ -91,3 +91,6 @@ var calc = (function() {
         return result.join('\n');
     }
 })();
+
+
+module.exports = cal;
