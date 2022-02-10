@@ -27,11 +27,8 @@ Su  Mo  Tu  We  Th  Fr  Sa
 30  31
 ```
 
-Rules:
-
 * It automatically detect locale and render proper translation, but you can change it.
 * <del>First day of the week also depend on locale.</del>
-* Months are indexed from 0.
 
 ## Options
 
