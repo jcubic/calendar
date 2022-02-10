@@ -1,16 +1,21 @@
 {
   "name": "ascii-calendar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Simple ASCII Calendar similar to Linux cal command in JavaScript",
   "main": "index.js",
   "scripts": {
-    "build": "browserify index.js | uglifyjs -cm > dist/umd.min.js"
+    "build": "browserify -s cal index.js | uglifyjs -c --mangle 'reserved=cal' > dist/umd.min.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jcubic/calendar.git"
   },
-  "keywords": ["ascii", "terminal", "cli", "text"],
+  "keywords": [
+    "ascii",
+    "terminal",
+    "cli",
+    "text"
+  ],
   "author": "Jakub T. Jankiewicz <jcubic@onet.pl> (https://jcubic.pl/jakub-jankiewicz/)",
   "license": "MIT",
   "bugs": {

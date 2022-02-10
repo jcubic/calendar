@@ -9,7 +9,12 @@
 
 var cal = (function() {
     var SEPARATOR = '  ';
-    var LANG = typeof window !== 'undefined' ? window.navigator.language : undefined;
+    var LANG;
+    try {
+        LANG = Intl.DateTimeFormat().resolvedOptions().locale;
+    } catch(e) {
+        LANG = typeof window !== 'undefined' ? window.navigator.language : undefined;
+    }
 
     // ----------------------------------------------------------------------------------
     function get_day_count(year, month) {
@@ -44,11 +49,11 @@ var cal = (function() {
     }
 
     // ----------------------------------------------------------------------------------
-    function week_days() {
+    function week_days(lang) {
         var result = [];
         for (var i = 0; i <= 6; ++i) {
             var d = new Date(1970, 1, 1 + i);
-            result.push(d.toLocaleString(LANG, {weekday: 'short'}).substring(0, 2));
+            result.push(d.toLocaleString(lang, {weekday: 'short'}).substring(0, 2));
         }
         return result.join(SEPARATOR);
     }
@@ -80,11 +85,23 @@ var cal = (function() {
     }
 
     // ----------------------------------------------------------------------------------
-    return function generate(year, month) {
+    return function generate(options) {
         var result = [];
-        var week = week_days();
-        var date = new Date(year + '/' + (month+1) + '/' + 1);
-        var month_label = date.toLocaleString(LANG, { month: 'long' });
+        var date;
+        var year, month, lang;
+        if (!options) {
+            date = new Date();
+            year = date.getFullYear();
+            month = date.getMonth() + 1;
+            lang = LANG;
+        } else {
+            year = options.year;
+            month = options.month;
+            lang = options.lang || LANG;
+            date = new Date(year + '/' + (month+1) + '/' + 1);
+        }
+        var week = week_days(lang);
+        var month_label = date.toLocaleString(lang, { month: 'long' });
         result.push(center(month_label + ' ' + year, week.length));
         result.push(week);
         result.push(days(year, month));
