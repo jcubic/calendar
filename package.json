@@ -14,7 +14,8 @@
     "ascii",
     "terminal",
     "cli",
-    "text"
+    "text",
+    "calendar"
   ],
   "author": "Jakub T. Jankiewicz <jcubic@onet.pl> (https://jcubic.pl/jakub-jankiewicz/)",
   "license": "MIT",
