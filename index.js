@@ -84,9 +84,9 @@ var cal = (function() {
 
     // -------------------------------------------------------------------------
     function days(year, month, first_day) {
-        var date = new Date(year + '/' + (month+1) + '/' + 1);
+        var date = new Date(year + '/' + month + '/' + 1);
         var start = date.getDay();
-        var end = get_day_count(year, month);
+        var end = get_day_count(year, month - 1);
         if (first_day === 1) {
             start -= 1;
         }
@@ -114,18 +114,17 @@ var cal = (function() {
     // -------------------------------------------------------------------------
     return function generate(options) {
         var result = [];
-        var date;
+        var date = new Date();
         var year, month, lang;
         if (!options) {
-            date = new Date();
             year = date.getFullYear();
             month = date.getMonth() + 1;
             lang = LANG;
         } else {
-            year = options.year;
-            month = options.month;
+            year = options.year || date.getFullYear();
+            month = (options.month || date.getMonth()) + 1;
             lang = options.lang || LANG;
-            date = new Date(year + '/' + (month+1) + '/' + 1);
+            date = new Date(year + '/' + month + '/' + 1);
         }
         var start_day = first_day(lang);
         var week = week_days(lang, start_day);
