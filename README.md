@@ -12,8 +12,9 @@ npm install ascii-calendar
 
 ```javascript
 const cal = require('ascii-calendar');
-console.log(cal({ year: 2021, month: 4 }));
+console.log(cal({ year: 2021, month: 4, lang: 'en-US' }));
 ```
+
 Output:
 
 ```
@@ -28,7 +29,7 @@ Su  Mo  Tu  We  Th  Fr  Sa
 ```
 
 * It automatically detect locale and render proper translation, but you can change it.
-* <del>First day of the week also depend on locale.</del>
+* First day of the week also depend on locale.
 
 ## Options
 
@@ -39,4 +40,4 @@ Su  Mo  Tu  We  Th  Fr  Sa
 ## License
 
 Released under [MIT](http://opensource.org/licenses/MIT) license<br/>
-Copyright (c) 2018-2021 [Jakub T. Jankiewicz](https://jcubic.pl/me)
+Copyright (c) 2018-2024 [Jakub T. Jankiewicz](https://jcubic.pl/me)
