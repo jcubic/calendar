@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/jcubic/calendar#readme",
   "devDependencies": {
-    "browserify": "^17.0.0",
-    "uglify-js": "^3.13.3"
+    "browserify": "^17.0.1",
+    "uglify-js": "^3.19.3"
   }
 }
