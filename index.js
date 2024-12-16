@@ -83,13 +83,19 @@ var cal = (function() {
     }
 
     // -------------------------------------------------------------------------
-    function days(year, month, first_day) {
+    function get_day_range(year, month, first_day) {
         var date = new Date(year + '/' + month + '/' + 1);
         var start = date.getDay();
         var end = get_day_count(year, month - 1);
-        if (first_day === 1) {
-            start -= 1;
-        }
+        start = (start + 7 - first_day) % 7;
+        return { start: start, end: end };
+    }
+
+    // -------------------------------------------------------------------------
+    function days(year, month, first_day) {
+        var range = get_day_range(year, month, first_day);
+        var start = range.start;
+        var end = range.end;
         var result = [];
         var line = [];
         var i;
@@ -112,6 +118,11 @@ var cal = (function() {
     }
 
     // -------------------------------------------------------------------------
+    function set(value) {
+        return typeof value !== 'undefined';
+    }
+
+    // -------------------------------------------------------------------------
     return function generate(options) {
         var result = [];
         var date = new Date();
@@ -122,7 +133,7 @@ var cal = (function() {
             lang = LANG;
         } else {
             year = options.year || date.getFullYear();
-            month = (options.month || date.getMonth()) + 1;
+            month = (set(options.month) ? options.month : date.getMonth()) + 1;
             lang = options.lang || LANG;
             date = new Date(year + '/' + month + '/' + 1);
         }
